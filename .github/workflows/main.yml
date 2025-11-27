@@ -22,5 +22,5 @@ jobs:
           username: ${{ secrets.USER_FTP }}  # Tên người dùng FTP (lưu trong secrets)
           password: ${{ secrets.PASS_FTP }}  # Mật khẩu FTP (lưu trong secrets)
           local-dir: ./  # Thư mục chứa mã nguồn (thường là thư mục gốc của repo)
-          server-dir: /path/to/your/remote/directory  # Đường dẫn trên server đích
-          git-ftp-args: --insecure  # Tùy chọn thêm nếu server của bạn yêu cầu
+          server-dir: /path/to/your/remote/directory/  # Đường dẫn trên server (phải có dấu '/')
+          # Không sử dụng git-ftp-args ở đây vì nó không hợp lệ
