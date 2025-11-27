@@ -1,0 +1,26 @@
+name: Deploy to Somee via FTP
+
+on:
+  push:
+    branches:
+      - main  # Chạy hành động này khi có push vào nhánh 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Chạy trên môi trường Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checkout mã nguồn từ nhánh main
+
+      - name: Set up FTP deployment
+        uses: SamKirkland/FTP-Deploy-Action@v5  # Sử dụng action FTP-Deploy-Action
+
+        with:
+          ftp-server: ${{ secrets.HOST_FTP }}  # Server FTP (ví dụ: ftp.somee.com)
+          ftp-username: ${{ secrets.USER_FTP }}  # Tên đăng nhập FTP
+          ftp-password: ${{ secrets.PASS_FTP }}  # Mật khẩu FTP
+          local-dir: ./  # Thư mục chứa mã nguồn trong repo (có thể thay đổi nếu cần)
+          remote-dir: /path/to/your/remote/directory  # Thư mục đích trên server FTP
+          git-ftp-args: --insecure  # Tùy chọn thêm nếu cần
+
